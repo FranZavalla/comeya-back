@@ -152,7 +152,11 @@ module.exports = (app) => {
         order: ["store_name"],
       });
       res.status(200).send(stores);
-    } catch (e) {}
+    } catch (e) {
+      res
+        .status(500)
+        .json({ status: "There was a problem getting information" });
+    }
   });
 
   // GET - TOP STORES
@@ -164,7 +168,9 @@ module.exports = (app) => {
       });
       return res.status(200).json({ status: "OK", stores: top_stores });
     } catch (e) {
-      return res.status(500).json({ status: "Something went wrong" });
+      return res
+        .status(500)
+        .json({ status: "There was a problem getting information" });
     }
   });
 
