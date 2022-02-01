@@ -318,7 +318,7 @@ This is the backend, to see the frontend [click here](https://github.com/FranZav
   - If the order was not found correctly -> code 404, ```{ status: "Order not found" }```
   - On server error -> code 500, ```{ status: "There was a problem accepting the order" }```
   
-## ToDo
+# ToDo
 ### The following features were not implemented due to lack of time/knowledge. The project was thought to be developed in a month
 
 - Change localStorage in frontend to cookies sent from backend
