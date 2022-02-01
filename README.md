@@ -321,6 +321,8 @@ This is the backend, to see the frontend [click here](https://github.com/FranZav
 # ToDo
 ### The following features were not implemented due to lack of time/knowledge. The project was thought to be developed in a month
 
+- Testing! Due to lack of time I couldn't solve a bug that wouldn't let me try, it's related to the use of ```consign```
+
 - Change localStorage in frontend to cookies sent from backend
 - Implement images to users, stores and products
 - Delete products in cart
