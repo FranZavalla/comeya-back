@@ -31,7 +31,7 @@ module.exports = (app) => {
         if (description && description.length > 31) {
           res.status(200).json({
             added: false,
-            status: "The price must be less than 32 characters",
+            status: "The description must be less than 32 characters",
           });
           return;
         }
@@ -117,7 +117,7 @@ module.exports = (app) => {
       if (description && description.length > 31) {
         res.status(200).json({
           edited: false,
-          status: "The price must be less than 32 characters",
+          status: "The description must be less than 32 characters",
         });
         return;
       }
@@ -139,24 +139,28 @@ module.exports = (app) => {
         status: "Product edited!",
       });
     } catch (e) {
-      return res
-        .status(500)
-        .json({ status: "There was a problem updating", error: e });
+      return res.status(500).json({ status: "There was a problem updating" });
     }
   });
 
   // GET - GET ALL PRODUCTS FOR A STORE
   productsRouter.get("/get_products/:store_name", async (req, res) => {
-    const store_name = req.params.store_name;
+    try {
+      const store_name = req.params.store_name;
 
-    const store = await Store.findOne({ where: { store_name: store_name } });
-    if (!store) return res.status(404).json({ status: "Store not found" });
+      const store = await Store.findOne({ where: { store_name: store_name } });
+      if (!store) return res.status(404).json({ status: "Store not found" });
 
-    const allProducts = await Product.findAll({
-      where: { StoreId: store.dataValues.id },
-    });
+      const allProducts = await Product.findAll({
+        where: { StoreId: store.dataValues.id },
+      });
 
-    return res.status(200).send(allProducts);
+      return res.status(200).send(allProducts);
+    } catch (e) {
+      return res
+        .status(500)
+        .json({ status: "There was a problem getting information" });
+    }
   });
 
   return productsRouter;
